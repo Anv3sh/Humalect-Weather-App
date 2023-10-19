@@ -18,6 +18,7 @@ load_dotenv(dotenv_path="../../../.env")
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 ACCUWEATHER_API_KEY = os.getenv("ACCUWEATHER_API_KEY")
+print(ACCUWEATHER_API_KEY)
 ACCUWEATHER_BASE_URL = os.getenv("ACCUWEATHER_BASE_URL")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -36,6 +37,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'api',
     'database',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -74,7 +77,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'humalect_weather_app.wsgi.application'
 
-
+CORS_ALLOW_ALL_ORIGINS = True
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 

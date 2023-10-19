@@ -4,6 +4,25 @@ from database.models import City, CustomSession
 from django.contrib.sessions.models import Session
 from django.http import JsonResponse
 
+
+def get_city_key(city_name):
+    api_key = ACCUWEATHER_API_KEY
+    base_url = ACCUWEATHER_BASE_URL
+    endpoint = f'/locations/v1/cities/search'
+    
+    try:
+        # Make request to AccuWeather API to get city details
+        response = requests.get(f'{base_url}{endpoint}', params={'q': city_name, 'apikey': api_key})
+        print("key_response",response.json())
+        if response.status_code == 200:
+            city_details = response.json()
+            if city_details:
+                city_key = city_details[0]['Key']
+                return city_key
+            
+    except Exception as e:
+        raise e
+    
 def get_weather_by_city(city_name):
     api_key = ACCUWEATHER_API_KEY
     base_url = ACCUWEATHER_BASE_URL
@@ -20,7 +39,7 @@ def get_weather_by_city(city_name):
                 city_name = city_details[0]['EnglishName']
                 # Get weather data for the city
                 endpoint = f'/currentconditions/v1/{city_key}'
-                weather_response = requests.get(f'{base_url}{endpoint}', params={'apikey': api_key})
+                weather_response = requests.get(f'{base_url}{endpoint}', params={'apikey': api_key,'details':"true"})
                 
                 if weather_response.status_code == 200:
                     weather_data = weather_response.json()[0]

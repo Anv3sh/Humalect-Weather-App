@@ -9,7 +9,8 @@ import rain_icon from '../../assets/rain.png';
 import snow_icon from '../../assets/snow.png';
 import wind_icon from '../../assets/wind.png';
 
-const API_ENPOINT = import.meta.env.REACT_APP_BACKEND_API_ENDPOINT
+const API_ENDPOINT = import.meta.env.VITE_REACT_APP_BACKEND_API_ENDPOINT
+const icons = {"clear":clear_icon,"drizzle":drizzle_icon,"rain":rain_icon,"snow":snow_icon,"cloud":cloud_icon}
 
 export const WeatherApp = () => {
 
@@ -21,19 +22,29 @@ export const WeatherApp = () => {
             return 0;
         }
         let city_name = element[0].value
-        let url = API_ENPOINT+`/weather/${city_name}`
+        let url = API_ENDPOINT+`/weather/${city_name}`
+        console.log(url)
         const response = await fetch(url);
         const data = await response.json();
-        console.log(response.status, data.title);
-        // const sessionValue = sessionStorage.getItem('key');
-        console.log("hello");
         console.log(data)
-        // const humidity = document.getElementsByClassName("humidity-percentage")
-        // const wind = document.getElementsByClassName("wind-speed")
-        // const temprature = document.getElementsByClassName("weather-temp")
-        // const location = document.getElementsByClassName("weather-location")
-
-        // humidity[0].innerHTML
+        if (data.status !== 200) {
+            console.error('Error fetching weather data:', response.status);
+            // Handle the error, return an error message, or show a user-friendly error.
+            return 0;
+          }
+        // console.log(response.status, data.title);
+        // const sessionValue = sessionStorage.getItem('key');
+        console.log(data)
+        const humidity = document.getElementsByClassName("humidity-percentage")
+        const wind = document.getElementsByClassName("wind-speed")
+        const temprature = document.getElementsByClassName("weather-temp")
+        const location = document.getElementsByClassName("weather-location")
+        const icons = document.getElementsByClassName("icon")
+        // console.log(data.body.data.)
+        location[0].innerHTML = city_name.chatAt(0).toUpperCase() + city_name.slice(1)
+        temprature[0].innerHTML = data.body.data.Temperature.Metric.Value+" °C"
+        wind[0].innerHTML = data.body.data.Wind.Speed.Metric.Value+" km/h"
+        // location[0].innerHTML = data.body.data.
     }
   return (
     <div className='container'>
@@ -50,13 +61,6 @@ export const WeatherApp = () => {
         <div className="weather-location">London</div>
         <div className="data-container">
             <div className="element">
-                <img src="" alt="" className="icon" />
-                <div className="data">
-                    <div className="humidity-percentage">64</div>
-                    <div className='text'>Humidity</div>
-                </div>
-            </div>
-            <div className="element">
                 <img src={humidity_icon} alt="" className="icon" />
                 <div className="data">
                     <div className="humidity-percentage">64</div>
@@ -71,6 +75,7 @@ export const WeatherApp = () => {
                 </div>
             </div>
         </div>
+        <div className="chart"></div>
     </div>
   )
 }
