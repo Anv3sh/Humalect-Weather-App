@@ -1,6 +1,7 @@
 from django.urls import path
-from api.views import index
+from api.views import health, get_weather
 
 urlpatterns = [
-    path("",index, name= "home")
+    path("",health, name= "home"),
+    path("weather/<str:city>", get_weather, name="get_weather")
 ]
