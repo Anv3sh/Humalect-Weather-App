@@ -3,10 +3,9 @@ import uuid
 from django.contrib.sessions.models import Session
 # Create your models here.
 class City(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, null=False, unique= True)
     data = models.JSONField(null=False)
-
     class Meta:
         db_table = "city"
 

@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-import api.endpoints as api_endpoints
+import api.router as api_router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('humalect-weather-api/v1/',include(api_endpoints))
+    path('humalect-weather-api/v1/',include(api_router))
 ]
