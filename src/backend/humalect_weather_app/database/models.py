@@ -7,9 +7,14 @@ class City(models.Model):
     name = models.CharField(max_length=255, null=False)
     data = models.JSONField(null=False)
 
+    class Meta:
+        db_table = "city"
+
 
 class CustomSession(models.Model):
-    session = models.OneToOneField(Session, on_delete=models.CASCADE)
-    city = models.ForeignKey(City)
+    session = models.OneToOneField(Session, on_delete=models.CASCADE, primary_key=True)
+    city = models.ForeignKey(City, on_delete= models.DO_NOTHING )
 
+    class Meta:
+        db_table = "customsessions"
     
