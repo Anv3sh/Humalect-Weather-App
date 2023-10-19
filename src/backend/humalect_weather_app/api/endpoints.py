@@ -1,7 +1,6 @@
 import requests
 import json
 from uuid import uuid4
-from django.http.response import JsonResponse , HttpResponseServerError
 from api.utils import (
     get_weather_by_city,
     add_city_to_current_session,
@@ -10,13 +9,19 @@ from api.utils import (
     get_city_key
 )
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 from database.models import City, CustomSession
 from django.contrib.sessions.models import Session
 
 
-def health(request):
-    return JsonResponse({"message":"Welcome to the weather app."})
 
+@api_view(['GET'])
+def health(request):
+    return Response({"message":"Welcome to the weather app."})
+
+@api_view(['GET'])
 def home(request):
     cities = get_cities_of_current_session(request)
     cities_data = {}
@@ -27,8 +32,9 @@ def home(request):
                 "data":city.data
             }
         )
-    return JsonResponse({"status":200,"body":{"cities_data":cities_data}})
+    return Response({"body":{"cities_data":cities_data}},status=200)
 
+@api_view(['GET'])
 def get_weather(request,city_name):
     try:
         city_key = get_city_key(city_name)
@@ -36,11 +42,11 @@ def get_weather(request,city_name):
         city = City.objects.get(id=city_key)
         # add_city_to_current_session(request,city)
         weather_data = city.data
-        return JsonResponse(
+        return Response(
             {
-            "status":200,
             "body":{"data":weather_data,"forecast_data":get_forecast(city.id)}
-            }
+            },
+            status=200
         )
     except City.DoesNotExist:
         response = get_weather_by_city(city_name)
@@ -58,18 +64,18 @@ def get_weather(request,city_name):
         # except Exception as e:
         #     return HttpResponseServerError("Internal server error!", str(e))
 
-            return JsonResponse(
+            return Response(
                 {
-                    "status":200,
                     "body":{
                         "data":response["weather_data"],
                         "forecast_data":get_forecast(response["city_key"])
                     }
-                }
+                },
+                status=200
             )
-        return JsonResponse(
+        return Response(
             {
-                "status":404,
                 "body":{"message":"City not found."}
-            }
+            },
+            status=404
         )
