@@ -41,9 +41,10 @@ def get_weather(request,city_name):
         city = City.objects.get(id=city_key)
         # add_city_to_current_session(request,city)
         weather_data = city.data
+        forecast_data = city.forecast_data
         return Response(
             {
-            "body":{"data":weather_data,"forecast_data":get_forecast(city.id)}
+            "body":{"data":weather_data,"forecast_data":forecast_data}
             },
             status=200
         )
@@ -53,7 +54,8 @@ def get_weather(request,city_name):
             city = City(
                 id=response["city_key"],
                 name=response["city_name"],
-                data=response["weather_data"]
+                data=response["weather_data"],
+                forecast_data=response["forecast_data"]
             )
             city.save()
 
@@ -66,7 +68,7 @@ def get_weather(request,city_name):
                 {
                     "body":{
                         "data":response["weather_data"],
-                        "forecast_data":get_forecast(response["city_key"])
+                        "forecast_data":response["forecast_data"]
                     }
                 },
                 status=200
