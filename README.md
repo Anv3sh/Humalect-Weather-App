@@ -11,7 +11,7 @@
 
 ## Local setup:
 
-- Setup `.env` in `./src/backend/humalect_weather_app` and `./src/frontend/humalect-weather-app`
+Setup `.env` in `./src/backend/humalect_weather_app` and `./src/frontend/humalect-weather-app`
 
 `./src/backend/humlect_weather_app/.env`:
 ```
