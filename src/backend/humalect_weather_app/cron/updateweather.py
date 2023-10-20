@@ -1,6 +1,7 @@
 import requests
 from database.models import City
 from api.utils import get_weather_by_city, get_forecast
+
 def update_weather():
     cities = City.objects.all()
 

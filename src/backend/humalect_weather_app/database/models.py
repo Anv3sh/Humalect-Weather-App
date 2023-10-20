@@ -6,7 +6,7 @@ class City(models.Model):
     id = models.CharField(primary_key=True,max_length=255)
     name = models.CharField(max_length=255, null=False, unique= True)
     data = models.JSONField(null=False)
-    forecast_data = models.JSONField(null=False)
+    forecast_data = models.JSONField(null=False, default=None)
     class Meta:
         db_table = "city"
 

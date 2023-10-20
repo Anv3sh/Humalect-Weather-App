@@ -1,7 +1,7 @@
 __pycache__
 .venv
 .env
-
+*.egg-info
 #frontend
 # Logs
 logs
