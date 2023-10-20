@@ -1,13 +1,15 @@
+import os
 import requests
 from humalect_weather_app.settings import ACCUWEATHER_API_KEY, ACCUWEATHER_BASE_URL
 from database.models import City, CustomSession
 from django.contrib.sessions.models import Session
 from django.http import JsonResponse
 
+api_key = os.getenv("ACCUWEATHER_API_KEY")
+base_url = os.getenv("ACCUWEATHER_BASE_URL")
 
 def get_city_key(city_name):
-    api_key = ACCUWEATHER_API_KEY
-    base_url = ACCUWEATHER_BASE_URL
+
     endpoint = f'/locations/v1/cities/search'
     
     try:
@@ -24,14 +26,12 @@ def get_city_key(city_name):
         raise e
     
 def get_weather_by_city(city_name):
-    api_key = ACCUWEATHER_API_KEY
-    base_url = ACCUWEATHER_BASE_URL
     endpoint = f'/locations/v1/cities/search'
     
     try:
         # Make request to AccuWeather API to get city details
         response = requests.get(f'{base_url}{endpoint}', params={'q': city_name, 'apikey': api_key})
-
+        print("weather response: ", response)
         if response.status_code == 200:
             city_details = response.json()
             if city_details:
@@ -46,18 +46,18 @@ def get_weather_by_city(city_name):
                     return {
                         "city_key":city_key,
                         "city_name":city_name,
-                        "weather_data":weather_data
+                        "weather_data":weather_data,
+                        "forecast_data":get_forecast(city_key)
                     }
             return None
     except Exception as e:
         raise e
 
 def get_forecast(city_key):
-    api_key = ACCUWEATHER_API_KEY
-    base_url = ACCUWEATHER_BASE_URL
     endpoint = f'/forecasts/v1/hourly/12hour/{city_key}'
     try:
         response = requests.get(f'{base_url}{endpoint}', params={'apikey': api_key,'metric':'true'})
+        print("forecast response:", response)
     except Exception as e:
         raise e
     if response.status_code == 200:
