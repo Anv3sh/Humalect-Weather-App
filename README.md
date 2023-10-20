@@ -98,3 +98,6 @@ docker compose down
 ## 4) Accuweather API call limit:
 - Accuweather's free tier API has a rate limit of 50 calls/day which hindered testing of the application.
 - Designed the application to limit the number of API calls.
+
+## 5) Chart alignment:
+- Inexperience in css lead to forecast chart's alignment being messed up.
