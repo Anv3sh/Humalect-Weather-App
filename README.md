@@ -8,6 +8,7 @@
 
 - The app also generates a chart of temperature over time using the 12 hrs forecast data of a city.
 - The app follows a modular structure.
+- The application uses the `@api_view` decorator from the django-rest-framework to have a better control over the backend api endpoints and responses.
 
 ## Local setup:
 
