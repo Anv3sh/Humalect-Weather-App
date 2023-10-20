@@ -7,6 +7,6 @@ def update_weather():
     print("hello")
     print(cities)
     for city in cities:
-        city.data = get_weather_by_city(city.name)
+        city.data = get_weather_by_city(city.name)["weather_data"]
         city.forecast_data = get_forecast(city.id)
         city.save()
