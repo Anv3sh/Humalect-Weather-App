@@ -38,7 +38,6 @@ def home(request):
 def get_weather(request,city_name):
     try:
         city_key = get_city_key(city_name)
-        print(city_key)
         city = City.objects.get(id=city_key)
         # add_city_to_current_session(request,city)
         weather_data = city.data
@@ -50,7 +49,6 @@ def get_weather(request,city_name):
         )
     except City.DoesNotExist:
         response = get_weather_by_city(city_name)
-        print(response)
         if response:
             city = City(
                 id=response["city_key"],
