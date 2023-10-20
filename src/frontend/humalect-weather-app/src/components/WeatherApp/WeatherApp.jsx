@@ -74,19 +74,19 @@ export const WeatherApp = () => {
             <div className="element">
                 <img src={humidity_icon} alt="" className="icon" />
                 <div className="data">
-                    <div className="humidity-percentage">Humidity</div>
-                    <div className='text'></div>
+                    <div className="humidity-percentage"></div>
+                    <div className='text'>Humidity</div>
                 </div>
             </div>
             <div className="element">
                 <img src={wind_icon} alt="" className="icon" />
                 <div className="data">
-                    <div className="wind-speed">Wind Speed</div>
-                    <div className='text' id="wind-speed-text"></div>
+                    <div className="wind-speed"></div>
+                    <div className='text' id="wind-speed-text">Wind Speed</div>
                 </div>
             </div>
         </div>
-        <div className="chart">
+        <div className="chart"style={{ width: '80%', height: '300px', margin: '0 auto' }}>
         {forecastData ? (
         <TemperatureGraph data={forecastData} />
       ) : (

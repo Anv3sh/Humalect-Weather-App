@@ -41,18 +41,18 @@
 
 .weather-image{
     margin-top: 29px;
-    margin-left: 190px;
+    margin-left: 220px;
     display: flex;
     justify-content: center;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
 }
 
 .weather-temp{
     display: flex;
     justify-content: center;
     color: white;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 400;
 }
 .weather-location{
@@ -94,4 +94,9 @@
 .loding{
     text-align: center;
     margin-top: 50px;
+}
+
+.chart {
+    margin-top: 50px;
+    margin-right: 100px;
 }
