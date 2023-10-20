@@ -9,12 +9,16 @@ import rain_icon from '../../assets/rain.png';
 import snow_icon from '../../assets/snow.png';
 import wind_icon from '../../assets/wind.png';
 import { TemperatureGraph } from '../TemperatureGraph/TemperatureGraph';
+import { WeatherIcon } from '../WeatherIcon/WeatherIcon';
 
 const API_ENDPOINT = import.meta.env.VITE_REACT_APP_BACKEND_API_ENDPOINT
 const icons = {"clear":clear_icon,"drizzle":drizzle_icon,"rain":rain_icon,"snow":snow_icon,"cloud":cloud_icon}
 
+
+
 export const WeatherApp = () => {
     const [forecastData, setForecastData] = useState(null);
+    const [weatherIcon, setWeatherIcon] = useState(null);
     const search = async () =>{
         // city to be searched
         const element = document.getElementsByClassName("cityInput")
@@ -37,6 +41,7 @@ export const WeatherApp = () => {
         // const sessionValue = sessionStorage.getItem('key');
         console.log(data)
         setForecastData(data.body.forecast_data)
+        setWeatherIcon(data.body.data.WeatherIcon)
         const humidity = document.getElementsByClassName("humidity-percentage")
         const wind = document.getElementsByClassName("wind-speed")
         const temprature = document.getElementsByClassName("weather-temp")
@@ -53,11 +58,15 @@ export const WeatherApp = () => {
         <div className="top-bar">
             <input type='text' className='cityInput' placeholder='Search'/>
             <div className="search-icon" onClick={()=>{search()}}>
-                <img src={search_icon} alt=''/>
+            <img src={search_icon} alt=''/>
             </div>
         </div>
         <div className="weather-image">
-            <img src={cloud_icon} alt=''/>
+            {weatherIcon ? (
+            <WeatherIcon data={weatherIcon} />
+        ) : (
+            <p></p>
+        )}
         </div>
         <div className="weather-temp"></div>
         <div className="weather-location"></div>
@@ -81,7 +90,7 @@ export const WeatherApp = () => {
         {forecastData ? (
         <TemperatureGraph data={forecastData} />
       ) : (
-        <p className='loding'>Loading forecast data...</p>
+        <p className='loding'></p>
       )}
         </div>
     </div>

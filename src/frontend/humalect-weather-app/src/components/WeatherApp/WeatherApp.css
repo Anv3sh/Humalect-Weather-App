@@ -41,8 +41,11 @@
 
 .weather-image{
     margin-top: 29px;
+    margin-left: 190px;
     display: flex;
     justify-content: center;
+    width: 200px;
+    height: 200px;
 }
 
 .weather-temp{
