@@ -44,7 +44,7 @@ export const WeatherApp = () => {
         const location = document.getElementsByClassName("weather-location")
         const icons = document.getElementsByClassName("icon")
         // console.log(data.body.data.)
-        location[0].innerHTML = city_name.charAt(0).toUpperCase() + city_name.slice(1)
+        location[0].innerHTML = data.body.name
         temprature[0].innerHTML = data.body.data.Temperature.Metric.Value+" °C"
         wind[0].innerHTML = data.body.data.Wind.Speed.Metric.Value+" km/h"
         humidity[0].innerHTML = data.body.data.RelativeHumidity+" %"
