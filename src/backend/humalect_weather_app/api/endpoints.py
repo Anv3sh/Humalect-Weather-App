@@ -6,7 +6,7 @@ from api.utils import (
     add_city_to_current_session,
     get_cities_of_current_session,
     get_forecast,
-    get_city_key
+    get_autocomplete
 )
 
 from rest_framework.decorators import api_view
@@ -37,19 +37,19 @@ def home(request):
 @api_view(['GET'])
 def get_weather(request,city_name):
     try:
-        city_key = get_city_key(city_name)
-        city = City.objects.get(id=city_key)
+        suggested_city = get_autocomplete(city_name)
+        city = City.objects.get(id=suggested_city["Key"])
         # add_city_to_current_session(request,city)
         weather_data = city.data
         forecast_data = city.forecast_data
         return Response(
             {
-            "body":{"data":weather_data,"forecast_data":forecast_data}
+            "body":{"name":city.name,"data":weather_data,"forecast_data":forecast_data}
             },
             status=200
         )
     except City.DoesNotExist:
-        response = get_weather_by_city(city_name)
+        response = get_weather_by_city(suggested_city["LocalizedName"])
         if response:
             city = City(
                 id=response["city_key"],
@@ -67,6 +67,7 @@ def get_weather(request,city_name):
             return Response(
                 {
                     "body":{
+                        "name":response["city_name"],
                         "data":response["weather_data"],
                         "forecast_data":response["forecast_data"]
                     }
