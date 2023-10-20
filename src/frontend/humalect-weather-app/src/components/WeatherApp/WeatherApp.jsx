@@ -8,7 +8,7 @@ import humidity_icon from '../../assets/humidity.png';
 import rain_icon from '../../assets/rain.png';
 import snow_icon from '../../assets/snow.png';
 import wind_icon from '../../assets/wind.png';
-// import { TemperatureGraph } from '../TemperatureGraph/TemperatureGraph';
+import { TemperatureGraph } from '../TemperatureGraph/TemperatureGraph';
 
 const API_ENDPOINT = import.meta.env.VITE_REACT_APP_BACKEND_API_ENDPOINT
 const icons = {"clear":clear_icon,"drizzle":drizzle_icon,"rain":rain_icon,"snow":snow_icon,"cloud":cloud_icon}
@@ -42,13 +42,11 @@ export const WeatherApp = () => {
         const temprature = document.getElementsByClassName("weather-temp")
         const location = document.getElementsByClassName("weather-location")
         const icons = document.getElementsByClassName("icon")
-        const windtext = document.getElementById("wind-speed-text")
         // console.log(data.body.data.)
         location[0].innerHTML = data.body.name
         temprature[0].innerHTML = data.body.data.Temperature.Metric.Value+" °C"
         wind[0].innerHTML = data.body.data.Wind.Speed.Metric.Value+" km/h"
         humidity[0].innerHTML = data.body.data.RelativeHumidity+" %"
-        windtext[0].innerHTML = "Wind Speed"
     }
   return (
     <div className='container'>
@@ -67,14 +65,14 @@ export const WeatherApp = () => {
             <div className="element">
                 <img src={humidity_icon} alt="" className="icon" />
                 <div className="data">
-                    <div className="humidity-percentage"></div>
+                    <div className="humidity-percentage">Humidity</div>
                     <div className='text'></div>
                 </div>
             </div>
             <div className="element">
                 <img src={wind_icon} alt="" className="icon" />
                 <div className="data">
-                    <div className="wind-speed"></div>
+                    <div className="wind-speed">Wind Speed</div>
                     <div className='text' id="wind-speed-text"></div>
                 </div>
             </div>
