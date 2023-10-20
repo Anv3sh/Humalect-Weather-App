@@ -90,6 +90,11 @@ docker compose down
 ## 2) Docker-Compose:
 - While i was trying to docker compose the 3 services I faced the issue of the `package.json` for frontend and `manage.py` for backend not being found.
 - The Db seemed running fine with no errors.
+
 ## 3) Creating a package out of the backend:
 - Tried creating a package out of the backend in order to remove any unnecessary import errors and smooth functioning of the backend api.
 - Created a `pyproject.toml` file and added build dependencies added a run script in the `__init__.py` but didn't seem to work.
+
+## 4) Accuweather API call limit:
+- Accuweather's free tier API has a rate limit of 50 calls/day which hindered testing of the application.
+- Designed the application to limit the number of API calls.
