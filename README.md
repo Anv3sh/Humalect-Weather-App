@@ -1,8 +1,8 @@
 # Humalect-Weather-App:
 
-- This is a Django+React weather app that uses the `Accuweather` api at the backend to fetch weather and forecast data for the given city name.
+- This is a Django+React weather app that uses the `Accuweather` API at the backend to fetch weather and forecast data for the given city name.
 
-- The application also implements an autocomplete feature where given an incomplete city name the api finds the closest city name and gives the data for it. AccuWeather's `Autocomplete api` is used for this with some added checks.
+- The application also implements an autocomplete feature where given an incomplete city name the api finds the closest city name and gives the data for it. AccuWeather's `Autocomplete` API is used for this with some added checks.
 
 - The application also stores the Cities searched for in the PostgreSQL db in order to save api calls. In order to update the saved data over time the application implements a cron job through which it can schedule a db updation job every 1 hour for both weather data and forecast data.
 
@@ -54,7 +54,7 @@ Compose works in all environments; production, staging, development, testing, as
 - Run a one-off command on a service
 
 Here we have 3 services the Django backend, React frontend and PostgreSQL database.
-What if we could containerse them and run together yet isolated from each other. Well docker-compose can do that for you.
+What if we could containerise them and run together yet isolated from each other. Well docker-compose can do that for you.
 
 ### Steps:
 Write these commands in the root dir:
