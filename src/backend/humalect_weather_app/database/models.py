@@ -3,9 +3,10 @@ import uuid
 from django.contrib.sessions.models import Session
 # Create your models here.
 class City(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.CharField(primary_key=True,max_length=255)
     name = models.CharField(max_length=255, null=False, unique= True)
     data = models.JSONField(null=False)
+    forecast_data = models.JSONField(null=False)
     class Meta:
         db_table = "city"
 
