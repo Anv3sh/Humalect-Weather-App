@@ -11,7 +11,10 @@ api_key = os.getenv("ACCUWEATHER_API_KEY")
 base_url = os.getenv("ACCUWEATHER_BASE_URL")
 
 def get_city_key(city_name):
-
+    '''
+    get city key for a given city name.
+    Argument-> city_name: str
+    '''
     endpoint = f'/locations/v1/cities/search'
     
     try:
@@ -27,6 +30,10 @@ def get_city_key(city_name):
         raise e
 
 def get_autocomplete(city_name):
+    '''
+    get the autocomplete city name of a given incomplete cityname.
+    Argument -> city_name:str
+    '''
     endpoint = f'/locations/v1/cities/autocomplete'
     try:
         # Make request to AccuWeather API to get city details
@@ -39,6 +46,10 @@ def get_autocomplete(city_name):
         return e
     
 def get_weather_by_city(city_name):
+    '''
+    get the weather data for a given city name.
+    Argument -> city_name:str
+    '''
     endpoint = f'/locations/v1/cities/search'
     
     try:
@@ -66,6 +77,10 @@ def get_weather_by_city(city_name):
         raise e
 
 def get_forecast(city_key):
+    '''
+    get 12hrs forecast data for a given city key.
+    Argument -> city_key:str
+    '''
     endpoint = f'/forecasts/v1/hourly/12hour/{city_key}'
     try:
         response = requests.get(f'{base_url}{endpoint}', params={'apikey': api_key,'metric':'true'})
@@ -78,6 +93,11 @@ def get_forecast(city_key):
     
 
 def get_current_custom_session(request):
+    '''
+    Deprecated
+    get the current custom session.
+    uses the CustomSession model.
+    '''
     print(request.session.session_key)
     session = Session.objects.get(session_key = request.session.session_key)
     try:
@@ -88,6 +108,10 @@ def get_current_custom_session(request):
     return custom_session
 
 def add_city_to_current_session(request,city):
+    '''
+    Deprecated
+    add a city to the current session.
+    '''
     try:
         current_session = get_current_custom_session(request)
         if not current_session.cities.filter(name=city.name).exists():
@@ -96,6 +120,10 @@ def add_city_to_current_session(request,city):
         raise e
     
 def get_cities_of_current_session(request):
+    '''
+    Deprecated
+    get stored cities of the current session.
+    '''
     custom_session = get_current_custom_session(request)
     return custom_session.cities.all()
 

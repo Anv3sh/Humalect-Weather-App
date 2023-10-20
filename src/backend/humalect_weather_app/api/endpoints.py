@@ -36,6 +36,9 @@ def home(request):
 
 @api_view(['GET'])
 def get_weather(request,city_name):
+    '''
+    get weather data for a city including weather data and forecast data.
+    '''
     try:
         suggested_city = get_autocomplete(city_name)
         city = City.objects.get(id=suggested_city["Key"])
@@ -48,6 +51,8 @@ def get_weather(request,city_name):
             },
             status=200
         )
+    
+    # exception handling for if a city is not already in the db
     except City.DoesNotExist:
         response = get_weather_by_city(suggested_city["LocalizedName"])
         if response:
@@ -74,6 +79,7 @@ def get_weather(request,city_name):
                 },
                 status=200
             )
+        # response if the city is not found somehow.
         return Response(
             {
                 "body":{"message":"City not found."}
