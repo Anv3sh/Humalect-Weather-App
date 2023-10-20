@@ -7,4 +7,5 @@ backend:
 	python3 src/backend/humalect_weather_app/manage.py runserver
 
 frontend:
+	npm i --prefix ./src/frontend/humalect-weather-app/
 	npm run dev --prefix ./src/frontend/humalect-weather-app/
