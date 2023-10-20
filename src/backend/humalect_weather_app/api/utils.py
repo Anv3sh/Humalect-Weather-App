@@ -57,7 +57,7 @@ def get_forecast(city_key):
     base_url = ACCUWEATHER_BASE_URL
     endpoint = f'/forecasts/v1/hourly/12hour/{city_key}'
     try:
-        response = requests.get(f'{base_url}{endpoint}', params={'apikey': api_key})
+        response = requests.get(f'{base_url}{endpoint}', params={'apikey': api_key,'metric':'true'})
     except Exception as e:
         raise e
     if response.status_code == 200:
