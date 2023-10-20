@@ -1,0 +1,5 @@
+ACCUWEATHER_API_KEY = rltT7F44G5YRR8y1CGOWWEHYEdf7VLkL
+ACCUWEATHER_BASE_URL = http://dataservice.accuweather.com
+
+
+VITE_REACT_APP_BACKEND_API_ENDPOINT = http://localhost:8000/humalect-weather-api/v1
