@@ -3,6 +3,7 @@ db:
 	python3 src/backend/humalect_weather_app/manage.py migrate
 
 backend:
+	pip install -r src/backend/humalect_weather_app/requirements.txt
 	make db
 	python3 src/backend/humalect_weather_app/manage.py runserver
 
