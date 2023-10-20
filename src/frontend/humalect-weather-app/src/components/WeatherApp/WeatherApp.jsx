@@ -15,7 +15,6 @@ const icons = {"clear":clear_icon,"drizzle":drizzle_icon,"rain":rain_icon,"snow"
 
 export const WeatherApp = () => {
     const [forecastData, setForecastData] = useState(null);
-
     const search = async () =>{
         // city to be searched
         const element = document.getElementsByClassName("cityInput")
@@ -43,11 +42,13 @@ export const WeatherApp = () => {
         const temprature = document.getElementsByClassName("weather-temp")
         const location = document.getElementsByClassName("weather-location")
         const icons = document.getElementsByClassName("icon")
+        const windtext = document.getElementById("wind-speed-text")
         // console.log(data.body.data.)
         location[0].innerHTML = data.body.name
         temprature[0].innerHTML = data.body.data.Temperature.Metric.Value+" °C"
         wind[0].innerHTML = data.body.data.Wind.Speed.Metric.Value+" km/h"
         humidity[0].innerHTML = data.body.data.RelativeHumidity+" %"
+        windtext[0].innerHTML = "Wind Speed"
     }
   return (
     <div className='container'>
@@ -60,30 +61,30 @@ export const WeatherApp = () => {
         <div className="weather-image">
             <img src={cloud_icon} alt=''/>
         </div>
-        <div className="weather-temp">24C</div>
-        <div className="weather-location">London</div>
+        <div className="weather-temp"></div>
+        <div className="weather-location"></div>
         <div className="data-container">
             <div className="element">
                 <img src={humidity_icon} alt="" className="icon" />
                 <div className="data">
-                    <div className="humidity-percentage">64</div>
-                    <div className='text'>Humidity</div>
+                    <div className="humidity-percentage"></div>
+                    <div className='text'></div>
                 </div>
             </div>
             <div className="element">
                 <img src={wind_icon} alt="" className="icon" />
                 <div className="data">
-                    <div className="wind-speed">18 Km/h</div>
-                    <div className='text'>Wind Speed</div>
+                    <div className="wind-speed"></div>
+                    <div className='text' id="wind-speed-text"></div>
                 </div>
             </div>
         </div>
         <div className="chart">
-        {/* {forecastData ? (
+        {forecastData ? (
         <TemperatureGraph data={forecastData} />
       ) : (
-        <p>Loading forecast data...</p>
-      )} */}
+        <p className='loding'>Loading forecast data...</p>
+      )}
         </div>
     </div>
   )
