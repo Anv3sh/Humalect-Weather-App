@@ -13,20 +13,20 @@ services:
       - POSTGRES_DB=postgres
 
     volumes:
-      - ./data/db:/var/lib/postgresql/data/
+      - ./volumes/data/db:/var/lib/postgresql/data/
 
   frontend:
     build:
       context: ./src/frontend/humalect-weather-app
       dockerfile: Dockerfile
 
-    environment:
-      - VITE_REACT_APP_BACKEND_API_ENDPOINT=${VITE_REACT_APP_BACKEND_API_ENDPOINT}
+    env_file:
+      - ./.env
     ports:
       - '3000:3000'
 
     volumes:
-      - ./frontend:/app/frontend
+      - ./volumes/frontend:/app/frontend
 
     depends_on:
       - backend
@@ -36,18 +36,13 @@ services:
       context: ./src/backend/humalect_weather_app
       dockerfile: Dockerfile
 
-    environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=postgres
-      - ACCUWEATHER_API_KEY=${ACCUWEATHER_API_KEY}
-      - ACCUWEATHER_BASE_URL=${ACCUWEATHER_BASE_URL}
-
+    env_file:
+      - ./.env
     ports:
       - '8000:8000'
 
     volumes:
-      - ./backend:/app/backend
+      - ./volumes/backend:/app/backend
 
     depends_on:
       - db
