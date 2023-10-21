@@ -68,6 +68,12 @@ Setup the `./.env`:
 ```
 ACCUWEATHER_API_KEY = 
 ACCUWEATHER_BASE_URL = http://dataservice.accuweather.com
+DB_NAME = 
+DB_USERNAME = 
+DB_PASSWORD = 
+DB_HOST = 
+DB_PORT = 
+
 
 POSTGRES_PASSWORD=
 POSTGRES_USER=
