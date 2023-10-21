@@ -99,5 +99,5 @@
 }
 
 .chart {
-    overflow: scroll;
+    overflow: hidden;
 }

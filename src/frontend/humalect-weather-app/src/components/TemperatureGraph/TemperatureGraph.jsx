@@ -12,8 +12,8 @@ export const TemperatureGraph = ({ data }) => {
   return (
     <LineChart width={800} height={400} data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey={(entry) => parseTime(entry.DateTime)}/>
-      <YAxis />
+      <XAxis dataKey={(entry) => parseTime(entry.DateTime)} stroke="#ffffff"/>
+      <YAxis stroke="#ffffff"/>
       <Tooltip />
       <Legend />
       <Line type="monotone" dataKey="Temperature.Value" name="Temperature (°C)" stroke="#8884d8" activeDot={{ r: 8 }} />
