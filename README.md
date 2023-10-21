@@ -18,6 +18,12 @@ Setup `.env` in `./src/backend/humalect_weather_app` and `./src/frontend/humalec
 ```
 ACCUWEATHER_API_KEY = <your-key>
 ACCUWEATHER_BASE_URL = http://dataservice.accuweather.com
+
+DB_NAME = <table_name>
+DB_USERNAME = <username>
+DB_PASSWORD = <password>
+DB_HOST = <host>
+DB_PORT = <port>
 ```
 `./src/frontend/humalect-weather-app/.env`:
 ```
