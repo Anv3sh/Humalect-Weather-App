@@ -86,7 +86,7 @@ export const WeatherApp = () => {
                 </div>
             </div>
         </div>
-        <div className="chart"style={{ width: '80%', height: '300px', margin: '0 auto' }}>
+        <div className="chart">
         {forecastData ? (
         <TemperatureGraph data={forecastData} />
       ) : (
