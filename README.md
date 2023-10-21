@@ -58,6 +58,17 @@ Here we have 3 services the Django backend, React frontend and PostgreSQL databa
 What if we could containerise them and run together yet isolated from each other. Well docker-compose can do that for you.
 
 ### Steps:
+Setup the `./.env`:
+```
+ACCUWEATHER_API_KEY = 
+ACCUWEATHER_BASE_URL = http://dataservice.accuweather.com
+
+POSTGRES_PASSWORD=
+POSTGRES_USER=
+POSTGRES_DB=
+
+VITE_REACT_APP_BACKEND_API_ENDPOINT = http://localhost:8000/humalect-weather-api/v1
+```
 Write these commands in the root dir:
 
 ```
