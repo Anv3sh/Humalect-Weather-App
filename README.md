@@ -112,6 +112,7 @@ docker compose down
 
 ## 5) Chart alignment:
 - Inexperience in css lead to forecast chart's alignment being messed up.
+- Added scroll to the chart to fix.
 
 # Preview:
 ![image](https://github.com/Anv3sh/Humalect-Weather-App/assets/51405870/5d885ad6-4b7d-4f9f-add7-0c6d66794f38)
