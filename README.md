@@ -11,8 +11,15 @@
 - The application uses the `@api_view` decorator from the django-rest-framework to have a better control over the backend api endpoints and responses.
 - Makefile introduced for efficient local setup and development.
 ## Local setup:
+1) Clone the repository and cd into it.
 
-Setup `.env` in `./src/backend/humalect_weather_app` and `./src/frontend/humalect-weather-app`
+2) Create a virtual environment and activate it through following commands in the root dir:
+```
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+3) Setup `.env` in `./src/backend/humalect_weather_app` and `./src/frontend/humalect-weather-app`
 
 `./src/backend/humlect_weather_app/.env`:
 ```
@@ -29,12 +36,11 @@ DB_PORT = <port>
 ```
 VITE_REACT_APP_BACKEND_API_ENDPOINT = http://localhost:8000/humalect-weather-api/v1
 ```
-
-- To run backend type the following command in the root dir:
+4) To run backend type the following command in the root dir:
 ```
 make backend
 ```
-- To run frontend type the following command in the root dir:
+5) To run frontend type the following command in the root dir:
 ```
 make frontend
 ```
