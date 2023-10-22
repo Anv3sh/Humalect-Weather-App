@@ -41,7 +41,7 @@ make frontend
 
 ## Cron Job:
 The cron command-line utility is a job scheduler on Unix-like operating systems.
-In this application the updation of city data is handled through a `cron` job which is established through custom Django management command namely `scheduler`.
+In this application the updation of city data is handled through a `cron` job `cron.updateweather` which is established through custom Django management command namely `scheduler` or also can be scheduled through the `crontab`.
 
 To run the cron job type following in the root dir
 ```
