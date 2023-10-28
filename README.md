@@ -1,4 +1,4 @@
-# Humalect-Weather-App:
+# Weatherly:
 
 - This is a Django+React weather app that uses the `Accuweather` API at the backend to fetch weather and forecast data for the given city name.
 
